@@ -1,7 +1,7 @@
 # Plant Local
 
 TODO
-- [ ] Setup database
+- [X] Setup database
 - [ ] Setup deployment
 - [ ] Setup testing
 - [ ] First UI with plant listing

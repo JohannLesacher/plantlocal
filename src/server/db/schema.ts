@@ -26,7 +26,7 @@ export const posts = createTable(
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updatedAt").onUpdateNow(),
+    updatedAt: timestamp("updatedAt").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
