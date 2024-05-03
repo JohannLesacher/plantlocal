@@ -3,12 +3,12 @@
 
 import { sql } from "drizzle-orm";
 import {
-  bigint,
   index,
-  mysqlTableCreator,
+  pgTableCreator,
+  serial,
   timestamp,
   varchar,
-} from "drizzle-orm/mysql-core";
+} from "drizzle-orm/pg-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -16,19 +16,19 @@ import {
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = mysqlTableCreator((name) => `plantlocal_${name}`);
+export const createTable = pgTableCreator((name) => `plantlocal_${name}`);
 
 export const posts = createTable(
   "post",
   {
-    id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
-    name: varchar("name", { length: 256 }),
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 256 }).notNull(),
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updatedAt").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: timestamp("updatedAt"),
   },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
+  (post) => ({
+    nameIndex: index("name_idx").on(post.name),
   })
 );

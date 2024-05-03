@@ -1,8 +1,10 @@
 import Link from "next/link";
-import {allPostsQuery} from "~/server/queries";
+import {addPostQuery, allPostsQuery} from "~/server/queries";
 
 export default async function HomePage() {
   const data = await getData()
+
+  await addPostQuery("Hello World")
 
   return (
     <main
