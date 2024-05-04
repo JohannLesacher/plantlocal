@@ -2,8 +2,8 @@
 
 TODO
 - [X] Setup database
-- [ ] Setup deployment
-- [ ] Setup testing
+- [X] Setup deployment
+- [X] Setup testing
 - [ ] First UI with plant listing
 - [ ] Search based on position
 - [ ] Setup analytics
