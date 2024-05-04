@@ -17,13 +17,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Start server
-      run: npm run build && npm run start
+    - name: Run Playwright tests
+      run: npx playwright test
       env:
         POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
         SKIP_ENV_VALIDATION: true
-    - name: Run Playwright tests
-      run: npx playwright test
+        TESTURL: ${{ vars.TESTURL }}
     - uses: actions/upload-artifact@v4
       if: always()
       with:
