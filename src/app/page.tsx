@@ -2,9 +2,8 @@ import Link from "next/link";
 import {addPostQuery, allPostsQuery} from "~/server/queries";
 
 export default async function HomePage() {
-  const data = await getData()
-
-  await addPostQuery("Hello World")
+  await addPostQuery("Hello, World!")
+  const posts = await allPostsQuery()
 
   return (
     <main
@@ -36,7 +35,7 @@ export default async function HomePage() {
               deploy it.
             </div>
           </Link>
-          {data.posts.map((post) => (
+          {posts.map((post) => (
             <div key={post.id} className="flex flex-col gap-2">
               <h3 className="text-2xl font-bold">{post.name} {post.id}</h3>
             </div>
@@ -45,11 +44,4 @@ export default async function HomePage() {
       </div>
     </main>
   );
-}
-
-async function getData() {
-  const posts = await allPostsQuery()
-  return {
-    posts
-  };
 }

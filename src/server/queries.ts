@@ -7,6 +7,6 @@ export async function addPostQuery(name: string) {
 }
 
 export async function allPostsQuery() {
-  return await db.query.posts.findMany()
-    .then((r) => r);
+  const posts = await db.query.posts.findMany()
+  return posts
 }
