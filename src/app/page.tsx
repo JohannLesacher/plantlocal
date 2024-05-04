@@ -41,7 +41,7 @@ export default async function HomePage() {
             <h2 className="col-span-2 text-3xl font-bold text-center mb-8" data-testid="postsTitle">Posts</h2>
 
             {posts.map((post) => (
-              <div key={post.id} className="flex flex-col gap-2 ">
+              <div key={post.id} className="flex flex-col gap-2" data-testid="postTitle">
                 <h3 className="text-2xl font-bold">{post.name} {post.id}</h3>
               </div>
             ))}

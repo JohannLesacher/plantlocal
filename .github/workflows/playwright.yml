@@ -1,9 +1,7 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  deployment_status:
+    types: [success]
 jobs:
   test:
     timeout-minutes: 60
@@ -20,9 +18,7 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
       env:
-        POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
-        SKIP_ENV_VALIDATION: true
-        TESTURL: ${{ vars.TESTURL }}
+        TESTURL: ${{ github.event.deployment_status.target_url }}
     - uses: actions/upload-artifact@v4
       if: always()
       with:

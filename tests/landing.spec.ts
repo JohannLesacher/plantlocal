@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('has titles', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  await page.goto('/');
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Create T3 App/);
@@ -11,8 +11,9 @@ test('has titles', async ({ page }) => {
 });
 
 test('has a list of posts', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  await page.goto('/');
 
-  // Expects page to have a list of posts
-
+  // Expects page to have a list of posts by checking post titles testid postTitle
+  const count = await page.getByTestId('postTitle').count()
+  expect(count).toBeGreaterThan(0)
 });
