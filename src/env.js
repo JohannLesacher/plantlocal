@@ -15,7 +15,7 @@ export const env = createEnv({
         "You forgot to change the default URL",
       ),
     TESTURL: z.string().url(),
-    CI: z.boolean().default(false),
+    CI: z.string().default('false'),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
